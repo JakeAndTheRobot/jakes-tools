@@ -8,7 +8,11 @@ def open_terminal():
     if os.name == 'nt':
         subprocess.run('cmd')
     elif os.name == 'posix':
-        subprocess.run(['open', '-a', 'Terminal'])
+        uname = os.uname()
+        if uname.sysname == 'Linux':
+            subprocess.run(['lxterminal'])
+        else:
+            subprocess.run(['open', '-a', 'Terminal'])
     else:
         subprocess.run(['gnome-terminal'])
 
